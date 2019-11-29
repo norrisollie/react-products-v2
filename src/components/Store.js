@@ -11,16 +11,16 @@ class Store extends React.Component {
             return <Product key={product.id} {...product} />
         })
 
-        const loading =
-            <div className="store-loading-wrapper">
+        const storeContent =
+            productsLoading ? <div className="store-loading-wrapper">
                 <div className="store-loading-gif">
                     <img width="32" src="images/loader.svg" /></div>
                 <div className="store-loading-copy"> Loading products</div>
-            </div>
+            </div> : productsComponent
 
         return (
             <div className="store-wrapper" >
-                {productsLoading ? loading : productsComponent}
+                {storeContent}
             </div>
         )
     }

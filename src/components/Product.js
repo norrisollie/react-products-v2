@@ -29,18 +29,37 @@ class Product extends React.Component {
                 }
                 style={{ "backgroundColor": colour.colourHex }}
                 key={colour.colour_id}
-                onClick={(e, id) => this.handleColourClick(e, id)}
+                data-colourid={colour.colour_id}
+                data-productid={colour.colour_id}
+                onClick={(e) => this.handleColourClick(e)}
             ></div >
         })
 
-        this.handleColourClick = (e, id) => {
+        this.handleColourClick = (e) => {
 
+            const colour_id = parseInt(e.target.dataset.colourid)
+            const product_id = parseInt(e.target.dataset.productid)
+
+            console.log("colour:", colour_id)
+            console.log("product:", product_id)
+
+
+            this.state.setState((prevState) => {
+
+                console.log(prevState)
+
+                // return prevState
+            })
 
         }
 
         return (
-            <div className={this.props.productsVisible ? "product-wrapper fade-out" : "product-wrapper fade-in"} key={id}
-            >
+            <div className={
+                this.props.productsVisible
+                    ? "product-wrapper fade-out"
+                    : "product-wrapper fade-in"
+            }
+                key={id}>
                 <div className="product-new">{isNewProduct ? "NEW" : ""}</div>
                 <div className="product-title">{productName}</div>
                 <div className="product-image-wrapper">
