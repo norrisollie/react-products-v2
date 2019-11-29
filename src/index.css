@@ -20,15 +20,14 @@ code {
 }
 
 .header-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 100vw;
   height: 20vh;
-  background-color: #aaa;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #aaa;
+  color: #fff;
 }
 
 .header-login {
@@ -52,29 +51,116 @@ code {
 }
 
 .store-wrapper {
-  position: absolute;
-  top: 20vh;
-  left: 0;
-  width: 100%;
-  height: 80vh;
-  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: min-content;
+  padding: 50px;
+  background-color: #eee;
+  min-height: 80vh;
+  grid-gap: 20px;
 }
 
-.store-loading {
+.store-loading-wrapper {
   position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.store-loading-copy {
   font-weight: bold;
   font-size: 20px;
   color: #aaa;
 }
 
-.footer-wrapper {
-  position: absolute;
-  top: 100vh;
-  left: 0;
+.product-image {
+  max-height: 210px;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.product-image.active {
+  display: inline;
+}
+
+.product-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.product-title {
   width: 100%;
-  height: 10vh;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.product-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.product-desc {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  width: 100%;
+  font-weight: bold;
+}
+
+.colours-wrapper {
+  display: flex;
+  margin-top: 5px;
+}
+
+.footer-wrapper {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #aaa;
+}
+
+.product-colours-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.colour-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1.5px #ddd;
+  margin-right: 5px;
+}
+
+.colour-button.active {
+  box-shadow: 0 0 0 1px rgb(82, 192, 255);
+}
+
+.colour:last-child {
+  margin: 0;
+}
+
+.colour.space-gray {
+  background-color: gray;
+}
+
+.colour.silver {
+  background-color: silver;
 }

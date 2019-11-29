@@ -7,16 +7,30 @@ import ProductsData from "./ProductsData"
 class App extends React.Component {
     constructor() {
         super()
+        this.state = {
+            productsVisible: false,
+            productsLoading: true,
+            productData: []
+        }
 
-        this.state = {}
-
+        this.componentDidMount = () => {
+            setTimeout(() => {
+                this.setState((prevState) => {
+                    prevState.productData = ProductsData
+                    prevState.productsLoading = false
+                    prevState.productsVisible = true
+                    return prevState
+                })
+            }, 3000)
+        }
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="app-wrapper">
                 <Header />
-                <Store />
+                <Store {...this.state} />
                 <Footer />
             </div>
         )
