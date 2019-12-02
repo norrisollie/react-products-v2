@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'SF Text';
+  src: url('./fonts/SFText-Semibold.woff2') format('woff2'),
+      url('./fonts/SFText-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Text';
+  src: url('./fonts/SFText-Regular.woff2') format('woff2'),
+      url('./fonts/SFText-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Display';
+  src: url('./fonts/SFDisplay-Regular.woff2') format('woff2'),
+      url('./fonts/SFDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Display';
+  src: url('./fonts/SFDisplay-Semibold.woff2') format('woff2'),
+      url('./fonts/SFDisplay-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -51,13 +83,19 @@ code {
 }
 
 .store-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: min-content;
+
+  display: flex;
+  flex-direction: column;
   padding: 50px;
-  background-color: #eee;
   min-height: 80vh;
   grid-gap: 20px;
+}
+
+.store-title {
+  padding-bottom: 50px;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .store-loading-wrapper {
@@ -74,6 +112,15 @@ code {
   font-weight: bold;
   font-size: 20px;
   color: #aaa;
+}
+
+.store-products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-auto-rows: min-content;
+  min-height: 80vh;
+  grid-gap: 20px;
+  justify-content: center;
 }
 
 .product-image {
@@ -93,7 +140,17 @@ code {
   align-items: center;
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-right: 1px solid lightgray;
+}
+
+.product-wrapper:nth-child(3n+3) {
+  border-right: 0;
+}
+
+.product-new {
+  width: 100%;
+  color: goldenrod;
+  margin-top: 10px;
 }
 
 .product-title {
@@ -111,12 +168,38 @@ code {
 
 .product-desc {
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 24px;
+  line-height: 1.16667;
+  font-weight: 600;
+  letter-spacing: .009em;
+  font-family: SF Display;
 }
 
 .product-price {
   width: 100%;
-  font-weight: bold;
+  margin-top: 10px;
+  font-size: 24px;
+  line-height: 1.16667;
+  font-weight: 600;
+  letter-spacing: .009em;
+  font-family: SF Display;
+}
+
+.product-features {
+  font-size: 14px;
+  line-height: 1.42861;
+  font-weight: 400;
+  letter-spacing: -.016em;
+  font-family: SF Text;
+  margin: 11px 0 0;
+  list-style: none;
+  padding-left: 11px;
+}
+
+.product-feature {
+  padding-bottom: 11px;
+  list-style: none;
 }
 
 .colours-wrapper {
@@ -141,12 +224,15 @@ code {
 }
 
 .colour-button {
-  width: 20px;
-  height: 20px;
+  position: relative;
+  display: flex;
+  width: 30px;
+  height: 30px;
   border-radius: 999px;
   border: 1px solid #fff;
   box-shadow: 0 0 0 1.5px #ddd;
-  margin-right: 5px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .colour-button.active {
@@ -164,3 +250,87 @@ code {
 .colour.silver {
   background-color: silver;
 }
+
+.colour-button:hover > .colour-name-hover {
+  opacity: 1;
+}
+
+.colour-name-hover {
+  font-size: 10px;
+  color: gray;
+  text-align: center;
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.product-enter {
+  opacity: 0.01;
+}
+
+.product-enter.product-enter-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.product-leave {
+  opacity: 1;
+}
+
+.product-leave.product-leave-active {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.compared-wrapper {
+  display: none;
+  padding: 50px;
+  background-color: #eee;
+  grid-gap: 20px;
+}
+
+.compared-wrapper.active {
+  display: block;
+
+}
+
+.product-compared {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.compared-container {
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+}
+
+.compare-checkbox {
+margin-right: 5px;
+}
+
+.compared-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.compared-products {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content;
+  grid-auto-rows: min-content;
+  grid-auto-columns: min-content;
+  grid-gap: 20px;
+  overflow: scroll;
+  padding: 20px;
+  margin: auto;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
